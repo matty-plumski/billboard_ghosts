@@ -46,10 +46,11 @@ var dropdown = document.getElementById("select_drop")
 dropdown.addEventListener('change', drop_change);
     
 function drop_change() {
-    mouse_over(data.nodes[this.value])
+    h_node = d;
+    mouse_over(data.nodes[this.value]);
     set_focus(data.nodes[this.value]);
 }
-    
+
 // Reset
 var reset = document.getElementById("reset")
 reset.addEventListener('click', drop_reset);
