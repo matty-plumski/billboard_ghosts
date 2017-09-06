@@ -44,9 +44,8 @@ var Spos = d3.scale.linear().range([.1, 2]).domain([Smin, Smax]);
 // Dropdown
 var dropdown = document.getElementById("select_drop")
 dropdown.addEventListener('change', drop_change);
-    
+
 function drop_change() {
-    h_node = d;
     mouse_over(data.nodes[this.value]);
     set_focus(data.nodes[this.value]);
 }
@@ -66,15 +65,16 @@ for (var i = 0; i < data.nodes.length; i++){
     data.nodes[i].x  = Xpos(Number(data.nodes[i].x));    
     data.nodes[i].y  = Ypos(Number(data.nodes[i].y));
     data.nodes[i].id = Number(data.nodes[i].id);
-    drop_opts[i] = [data.nodes[i].label.split(' had ')[0] + ' ('+ data.nodes[i].attributes.weight + ')', i, data.nodes[i].attributes.weight];
+    drop_opts[i] = [data.nodes[i].label.split(' had ')[0] + ' ('+ data.nodes[i].attributes.weight + ')', i, data.nodes[i].attributes.weight, data.nodes[i].id];
 }
 
 // Sort and Fill Dropdown
 drop_opts = drop_opts.sort(function(a,b){ return b[2] - a[2]; });
+var select_map = {};
 for (var i = 0; i < drop_opts.length; i++){
     dropdown[dropdown.length] = new Option(drop_opts[i][0], drop_opts[i][1]);
+    select_map[drop_opts[i][3]] = drop_opts[i][1]
 }
-
     
 // Cast Edge Source&Target as Numeric
 for (var i = 0; i < data.edges.length; i++){
@@ -193,6 +193,7 @@ function mouse_off() {
     console.log('exit');
     document.getElementById('art_label').innerHTML = '';
     document.getElementById('playlist').innerHTML = '';
+    document.getElementById("select_drop").selectedIndex = 0  ;
     node.attr('fill', function(d) { return d.color; })
         .style('stroke', null).attr('opacity', 1);
     text.transition()
@@ -204,6 +205,7 @@ function mouse_off() {
 
 function set_focus(d) {	
     console.log('focus');
+    console.log(d)
     // Set clicked node and any connected node to visible 
     node.attr('fill',    function(o) { return conn_test(d, o) ? '#e67e22': o.color;})
         .attr('opacity', function(o) { return conn_test(d, o) ? 1: 0.1;})
@@ -214,6 +216,8 @@ function set_focus(d) {
     
     text.transition()
         .style('opacity',     function(o) { return conn_test(d, o) ? 1 : 0;});
+    
+    document.getElementById("select_drop").value = select_map[d.id] //function(data) { data.nodes d.id
 }
     
 // Rearrange labels so they don't overlap. 
