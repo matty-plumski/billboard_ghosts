@@ -1,21 +1,21 @@
 //***** LOAD DATA *********************************************      
 var link_list = null;
 d3.json('graph.json', function(error, d) {
-        var data = d;
-
-        //console.log(data.nodes[0]);
-// Dummy Data for Testing
-//        var data = {'nodes':[{
-//        'id': '0', 'name': 'aaa', 'label':'AAA had <b>7</b> tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 1,  'color': 'red',  'x':'0',  'y': '0', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
-//        {'id': '1',  'name': 'bbb', 'label':'BBB had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 15,  'color': 'red',  'x':'10', 'y': '-2', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
-//        {'id': '2',  'name': 'ccc', 'label':'CCC had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 8,  'color': 'red',  'x':'20', 'y': '-4', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
-//        {'id': '3',  'name': 'ddd', 'label':'DDD had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 10, 'color': 'red',  'x':'30', 'y': '6', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
-//        {'id': '4',  'name': 'eee', 'label':'EEE had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 8,  'color': 'red',  'x':'40', 'y': '-10', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}}],
-//        'edges':[{'source':'0', 'color': 'gray', 'size':1.0,  'target':'1'},
-//        {'source':'2', 'color': 'gray', 'size':4.0,  'target':'3'},
-//        {'source':'4', 'color': 'gray', 'size':3.0,  'target':'3'},
-//        {'source':'0', 'color': 'gray', 'size':7.0,  'target':'3'},
-//        {'source':'2', 'color': 'gray', 'size':12.0, 'target':'3'}]};
+    var data = d;
+//
+//    console.log(data.nodes[0]);
+//Dummy Data for Testing
+//    var data = {'nodes':[{
+//    'id': '0', 'name': 'aaa', 'label':'AAA had <b>7</b> tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 1,  'color': 'red',  'x':'0',  'y': '0', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
+//    {'id': '1',  'name': 'bbb', 'label':'BBB had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 15,  'color': 'red',  'x':'10', 'y': '-2', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
+//    {'id': '2',  'name': 'ccc', 'label':'CCC had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 8,  'color': 'red',  'x':'20', 'y': '-4', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
+//    {'id': '3',  'name': 'ddd', 'label':'DDD had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 10, 'color': 'red',  'x':'30', 'y': '6', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}},
+//    {'id': '4',  'name': 'eee', 'label':'EEE had 7 tracks in 2007-2012, peaking at 1 and surviving 165 total weeks on the charts.',  'size': 8,  'color': 'red',  'x':'40', 'y': '-10', 'attributes': {'info': '<ol><li>J.R. Rotem (1)</li><li>John Hill  (1)</li><li>Justin Tranter (1)</li></ol>', 'playlist': '1GHxAmb1iZz8qYDQaDKZuW', 'weight':'4'}}],
+//    'edges':[{'source':'0', 'color': 'gray', 'size':1.0,  'target':'1'},
+//    {'source':'2', 'color': 'gray', 'size':4.0,  'target':'3'},
+//    {'source':'4', 'color': 'gray', 'size':3.0,  'target':'3'},
+//    {'source':'0', 'color': 'gray', 'size':7.0,  'target':'3'},
+//    {'source':'2', 'color': 'gray', 'size':12.0, 'target':'3'}]};
 
 // SVG Properties
 var width  = window.innerWidth*.7; // ~2/3 of the left window for viz
@@ -46,6 +46,7 @@ var dropdown = document.getElementById("select_drop")
 dropdown.addEventListener('change', drop_change);
     
 function drop_change() {
+    mouse_over(data.nodes[this.value])
     set_focus(data.nodes[this.value]);
 }
     
@@ -251,7 +252,7 @@ function mouse_over(d) {
     svg.style('cursor','pointer');
     // Set infobox values
     document.getElementById('art_label').innerHTML = d.label;
-    document.getElementById('playlist').innerHTML = '<iframe src="https://open.spotify.com/embed/user/hoyablues/playlist/'+d.attributes.playlist+'" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+    document.getElementById('playlist').innerHTML = '<iframe src="https://open.spotify.com/embed/user/hoyablues/playlist/'+d.attributes.playlist+'" width="300" height="300" frameborder="0" allowtransparency="true"></iframe>';
     
     // Focus on Nodes
     node.attr('fill',     function(o) { return conn_test(d, o) ? '#e67e22': o.color;})

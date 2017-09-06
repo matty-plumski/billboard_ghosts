@@ -8,31 +8,30 @@
 <div class='viz' id='viz'></div>
 <!-- Right Side is InfoBox -->
 <div class='info' id='info'>
-    <div align='left'>
+    <div align='left' style='color:#34495e'>
         <div style="font-size:30px"><b>Billboard Ghosts</b></div>
-        <div style="font-size:15px">Exploring Who <i>Really</i> Writes Pop Music</div>
+        <div style="font-size:12px">Exploring Who <i>Really</i> Writes Pop Music</div>
         <div style="font-size:10px"><i>Billboard Hot-100 Top 50 Hits 2007-2017</i></div>
     </div>
-    <ul style="font-size:9px" align='left'>
-        <li>Each dot represents a "hidden" producer/writer/composer who was listed on a track's credits but not publicly.</li>
-        <ul><li>For example, Taylor Swift would only have tracks she produced without being listed as the artist, featuring, starring etc.</li></ul><br/>
-        <li>By hovering over each "ghost" you can see the other "ghosts" with whom they frequently collaborate.</li>
-        <ul><li>When a ghost is clicked, the names of their collaborators appear and a playlist of some of their hits appears. Unclick to resume exploring!</li></ul>
-        <li>Scroll to zoom on a node to view a ghost's connections with more detail!</li>
-    </ul>
-
+    <div style='color:#34495e'>
+        <ul style="font-size:9px" align='left' >
+            <li>Each dot represents a "hidden" producer/writer/composer who was listed on a track's credits but not publicly.</li>
+            <ul><li>For example, Taylor Swift would only have tracks she produced without being listed as the artist, featuring, starring etc.</li></ul><br/>
+            <li>By hovering over each "ghost" you can see the other "ghosts" with whom they frequently collaborate.</li>
+            <ul><li>When a ghost is clicked, the names of their collaborators appear and a playlist of some of their hits appears. Unclick to resume exploring!</li></ul>
+            <li>Scroll to zoom on a node to view a ghost's connections with more detail!</li>
+        </ul>
+    </div>
 <!--Table Information-->
-    <br/>
     <table>
-        <tr>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;
         <select id="select_drop">
             <option>Choose a Ghost!</option>
         </select>&nbsp;
         <button class="button" id="reset">Reset</button>
         </tr>
-
         <tr>
-            <p id='art_label' align='left'></p>
+            <p id='art_label' style="font-size:10px;color:#e74c3c" align='left'></p>
         </tr>
         <tr>
             <p id='playlist' align='left'></p>
