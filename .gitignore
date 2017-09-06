@@ -1,0 +1,25 @@
+# Credentials
+*.creds
+
+#Zipped
+*.gz
+
+.*
+!/.gitignore
+
+*.rdata
+*.Rdata
+*.RData
+*.RDATA
+*.RDS
+*.rds
+*.csv
+*.mdb
+*.accdb
+*.sav
+*.sas7bdat
+*.xls
+*.xlsx
+.ipynb_checkpoints/
+*.pyc
+.creds
