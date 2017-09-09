@@ -21,10 +21,10 @@ d3.json('graph.json', function(error, d) {
 var width  = window.innerWidth*.7; // ~2/3 of the left window for viz
 var height = window.innerHeight;   // All of viz height
 var zoom   = d3.behavior.zoom().scaleExtent([-10, 100]).on('zoom', zoomed); // Set zoom scale extent and zoom function behavior
-var st_fnt = 6;    // Starting Font Size
+var st_fnt = 10;    // Starting Font Size
 var scale  = 1;    // Stores current zoom level
 var h_node = null; // Node Highlight Flag
-    
+
 // Find Bounds of X&Y Coordinates, Radius and Strokes
 var Xmax = d3.max(data.nodes, function(d) { return d.x; });
 var Xmin = d3.min(data.nodes, function(d) { return d.x; });
@@ -38,14 +38,15 @@ var Smax = d3.max(data.edges, function(d) { return d.size; });
 // Functions to Scale X&Y Coordinates, Radius and Strokes
 var Xpos = d3.scale.linear().range([width*.1,  width*.9] ).domain([Xmin, Xmax]);
 var Ypos = d3.scale.linear().range([height*.1, height*.9]).domain([Ymin, Ymax]);
-var Rpos = d3.scale.linear().range([1.5, 8]).domain([Rmin, Rmax]);
-var Spos = d3.scale.linear().range([.1, 2]).domain([Smin, Smax]);
+var Rpos = d3.scale.linear().range([2, 10]).domain([Rmin, Rmax]);
+var Spos = d3.scale.linear().range([.2, 3]).domain([Smin, Smax]);
 
 // Dropdown
 var dropdown = document.getElementById("select_drop")
 dropdown.addEventListener('change', drop_change);
 
 function drop_change() {
+    h_node = d;
     mouse_over(data.nodes[this.value]);
     set_focus(data.nodes[this.value]);
 }
@@ -57,6 +58,8 @@ reset.addEventListener('click', drop_reset);
 function drop_reset() {
     mouse_off();
     h_node = null;
+    svg.attr('transform', 'translate(0, 0) scale(1)');
+    d3.selectAll("text").attr('font-size', st_fnt+'px')
 }
 
 var drop_opts = [];
@@ -100,7 +103,7 @@ function zoomed() {
              ')scale(' + d3.event.scale + ')');
     scale = d3.event.scale;
     // proportionally resize text so it doesn't overlap when zoomed
-    d3.selectAll("text").attr('font-size', Math.max(1, 5/scale)+'px')
+    d3.selectAll("text").attr('font-size', Math.max(1, st_fnt/scale)+'px')
 }
     
 //***** ADD SVG *********************************************     
@@ -159,7 +162,7 @@ var text = svg.selectAll('.text')
               .text(function(d) { return d.label.split(' had ')[0]; })
               .attr('font-family', 'Verdana')
               .attr('id', function(d)  { return d.id;})
-              .attr('font-size', Math.max(1, 5*(1/scale))+'px')
+              .attr('font-size', Math.max(1, st_fnt*(1/scale))+'px')
               .attr('fill', 'black')
               .attr('opacity', 0)
               .attr('pointer-events', 'none');
@@ -217,7 +220,9 @@ function set_focus(d) {
     text.transition()
         .style('opacity',     function(o) { return conn_test(d, o) ? 1 : 0;});
     
-    document.getElementById("select_drop").value = select_map[d.id] //function(data) { data.nodes d.id
+    document.getElementById("select_drop").value = select_map[d.id] 
+    document.getElementById('art_label').innerHTML = d.label;
+    document.getElementById('playlist').innerHTML = '<iframe src="https://open.spotify.com/embed/user/hoyablues/playlist/'+d.attributes.playlist+'" width="300" height="300" frameborder="0" allowtransparency="true"></iframe>';
 }
     
 // Rearrange labels so they don't overlap. 
